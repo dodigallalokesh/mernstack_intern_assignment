@@ -16,7 +16,7 @@ class BarChart extends Component {
    
   fetchData = async (month) => {
     try {
-      const response = await fetch(`http://localhost:3005/bar-chart-data?month=${month}`);
+      const response = await fetch(`https://amazon-transaction-deatails-backend-njuz.vercel.app/bar-chart-data?month=${month}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

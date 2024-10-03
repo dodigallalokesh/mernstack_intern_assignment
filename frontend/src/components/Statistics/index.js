@@ -16,7 +16,7 @@ class StatisticsBox extends Component {
    
   fetchStatistics = async (month) => {
     try {
-      const response = await fetch(`http://localhost:3005/statistics?month=${month}`);
+      const response = await fetch(`https://amazon-transaction-deatails-backend-njuz.vercel.app/statistics?month=${month}`);
       if (!response.ok) {
         throw new Error('Failed to fetch statistics data');
       }

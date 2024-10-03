@@ -15,7 +15,7 @@ class PieChartComponent extends Component {
 
    fetchPieChartData = async (month) => {
     try {
-      const response = await fetch(`http://localhost:3005/pie-chart-data?month=${month}`);
+      const response = await fetch(`https://amazon-transaction-deatails-backend-njuz.vercel.app/pie-chart-data?month=${month}`);
       if (!response.ok) {
         throw new Error('Failed to fetch pie chart data');
       }

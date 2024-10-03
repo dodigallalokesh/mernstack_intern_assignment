@@ -30,7 +30,7 @@ class TransactionDashboard extends Component {
    fetchTransactions = () => {
     const { page, perPage } = this.state;
     const { searchTerm } = this.props;
-    const url = `http://localhost:3005/transactions?page=${page}&perPage=${perPage}&search=${searchTerm}`;
+    const url = `https://amazon-transaction-deatails-backend-njuz.vercel.app/transactions?page=${page}&perPage=${perPage}&search=${searchTerm}`;
 
     fetch(url)
       .then((res) => res.json())
