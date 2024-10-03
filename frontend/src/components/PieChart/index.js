@@ -13,8 +13,7 @@ class PieChartComponent extends Component {
     };
   }
 
-  // Fetch data when the component mounts or updates based on the month prop
-  fetchPieChartData = async (month) => {
+   fetchPieChartData = async (month) => {
     try {
       const response = await fetch(`http://localhost:3005/pie-chart-data?month=${month}`);
       if (!response.ok) {
@@ -43,13 +42,13 @@ class PieChartComponent extends Component {
   };
 
   componentDidMount() {
-    this.fetchPieChartData(this.props.month); // Fetch data based on the initial month prop
+    this.fetchPieChartData(this.props.month); 
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.month !== this.props.month) {
-      this.setState({ loading: true }); // Reset loading state
-      this.fetchPieChartData(this.props.month); // Fetch data when the month prop changes
+      this.setState({ loading: true });  
+      this.fetchPieChartData(this.props.month);  
     }
   }
 

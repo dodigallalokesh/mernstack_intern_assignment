@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './index.css'; // Assuming you have a CSS file for styles
+import './index.css';  
 
 class TransactionDashboard extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class TransactionDashboard extends Component {
     };
   }
 
-  // Month map to convert month names to numbers
+   
   monthMap = {
     Jan: '01',
     Feb: '02',
@@ -27,8 +27,7 @@ class TransactionDashboard extends Component {
     Dec: '12',
   };
 
-  // Fetch transactions based on the current state and props values
-  fetchTransactions = () => {
+   fetchTransactions = () => {
     const { page, perPage } = this.state;
     const { searchTerm } = this.props;
     const url = `http://localhost:3005/transactions?page=${page}&perPage=${perPage}&search=${searchTerm}`;
@@ -39,8 +38,7 @@ class TransactionDashboard extends Component {
       .catch((error) => console.error('Error fetching transactions:', error));
   };
 
-  // Fetch transactions when the component mounts or when searchTerm changes
-  componentDidMount() {
+   componentDidMount() {
     this.fetchTransactions();
   }
 
@@ -50,13 +48,11 @@ class TransactionDashboard extends Component {
     }
   }
 
-  // Handle pagination (next page)
-  handleNextPage = () => {
+   handleNextPage = () => {
     this.setState((prevState) => ({ page: prevState.page + 1 }), this.fetchTransactions);
   };
 
-  // Handle pagination (previous page)
-  handlePrevPage = () => {
+   handlePrevPage = () => {
     this.setState((prevState) => ({ page: prevState.page > 1 ? prevState.page - 1 : 1 }), this.fetchTransactions);
   };
 
@@ -67,7 +63,7 @@ class TransactionDashboard extends Component {
       <div className="transaction-dashboard">
         <h1>Transaction Dashboard</h1>
 
-        {/* Transactions Table */}
+        
         <div className="transactions-table">
           <table>
             <thead>
@@ -99,7 +95,7 @@ class TransactionDashboard extends Component {
           </table>
         </div>
 
-        {/* Pagination Controls */}
+         
         <div className="pagination-controls">
           <button onClick={this.handlePrevPage} disabled={page === 1}>
             Previous

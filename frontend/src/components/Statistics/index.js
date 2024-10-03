@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './index.css'; // You can create custom styles here
+import './index.css';  
 
 class StatisticsBox extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class StatisticsBox extends Component {
     };
   }
 
-  // Fetch statistics data based on the selected month
+   
   fetchStatistics = async (month) => {
     try {
       const response = await fetch(`http://localhost:3005/statistics?month=${month}`);
@@ -22,7 +22,7 @@ class StatisticsBox extends Component {
       }
       const result = await response.json();
 
-      // Update the state with the fetched data
+       
       this.setState({
         totalSaleAmount: result.totalSaleAmount,
         totalSoldItems: result.totalSoldItems,
@@ -35,13 +35,13 @@ class StatisticsBox extends Component {
   };
 
   componentDidMount() {
-    this.fetchStatistics(this.props.month); // Fetch data based on initial month prop
+    this.fetchStatistics(this.props.month);  
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.month !== this.props.month) {
-      this.setState({ loading: true }); // Reset loading state
-      this.fetchStatistics(this.props.month); // Fetch data when month changes
+      this.setState({ loading: true });  
+      this.fetchStatistics(this.props.month);  
     }
   }
 

@@ -32,15 +32,12 @@ initializeDBAndServer();
  
 
 
-// API to list all transactions with search and pagination
-app.get("/transactions", async (req, res) => {
- // console.log("API for transactions called");
-  
+ app.get("/transactions", async (req, res) => {
+   
   const { page = 1, perPage = 10, search = '' } = req.query;
   const offset = (page - 1) * perPage;
 
-  // Log the search parameters for debugging
-  //console.log(`Page: ${page}, Per Page: ${perPage}, Search: ${search}`);
+   //console.log(`Page: ${page}, Per Page: ${perPage}, Search: ${search}`);
 
   const query = `
     SELECT * FROM data
@@ -50,12 +47,12 @@ app.get("/transactions", async (req, res) => {
   const params = [`%${search}%`, `%${search}%`, `%${search}%`, perPage, offset];
 
   try {
-    const rows = await db.all(query, params); // Await the promise from db.all
-   // console.log("Data fetched successfully:", rows); // Log fetched data
+    const rows = await db.all(query, params);  
+   // console.log("Data fetched successfully:", rows);  
     res.json(rows); // Send rows as JSON response
   } catch (err) {
-   // console.error("Error querying transactions:", err.message); // Log error message
-    res.status(500).json({ error: err.message }); // Send error response
+   // console.error("Error querying transactions:", err.message);  
+    res.status(500).json({ error: err.message });  
   }
 });
 
@@ -63,12 +60,12 @@ app.get("/transactions", async (req, res) => {
 app.get("/statistics", async (req, res) => {
   const { month } = req.query;
 
-  // Validate month parameter
+   
   if (!month) {
     return res.status(400).json({ error: "Month is required." });
   }
 
-  // Map month name to its corresponding numerical value
+   
   const monthMap = {
     'Jan': '01',
     'Feb': '02',
@@ -114,12 +111,12 @@ app.get("/statistics", async (req, res) => {
 app.get("/bar-chart-data", async (req, res) => {
   const { month } = req.query;
 
-  // Validate month parameter
+   
   if (!month) {
     return res.status(400).json({ error: "Month is required." });
   }
 
-  // Map month name to its corresponding numerical value
+   
   const monthMap = {
     'Jan': '01',
     'Feb': '02',
@@ -141,7 +138,7 @@ app.get("/bar-chart-data", async (req, res) => {
     return res.status(400).json({ error: "Invalid month name." });
   }
 
-  // Query to count items in price ranges
+   
   const query = `
     SELECT 
       COUNT(CASE WHEN price BETWEEN 0 AND 100 THEN 1 END) AS '0-100',
@@ -176,12 +173,12 @@ app.get("/pie-chart-data", async (req, res) => {
   const { month } = req.query;
    
   
-  // Validate month parameter
+   
   if (!month) {
     return res.status(400).json({ error: "Month is required." });
   }
 
-  // Map month name to its corresponding numerical value
+   
   const monthMap = {
     'Jan': '01',
     'Feb': '02',
@@ -204,8 +201,7 @@ app.get("/pie-chart-data", async (req, res) => {
     return res.status(400).json({ error: "Invalid month name." });
   }
 
-  // Query to find unique categories and the number of items in each category for the selected month
-  const query = `
+   const query = `
     SELECT category, COUNT(*) AS itemCount
     FROM data
     WHERE strftime('%m', date_of_sale) = ?
@@ -215,7 +211,7 @@ app.get("/pie-chart-data", async (req, res) => {
   const params = [monthNumber];
 
   try {
-    const pieChartData = await db.all(query, params); // `all` will return multiple rows
+    const pieChartData = await db.all(query, params);  
     res.json(pieChartData);
   } catch (err) {
     console.error("Error fetching pie chart data:", err.message);
@@ -228,12 +224,12 @@ app.get("/pie-chart-data", async (req, res) => {
 app.get("/combined-data", async (req, res) => {
   const { month } = req.query;
 
-  // Validate month parameter
+   
   if (!month) {
     return res.status(400).json({ error: "Month is required." });
   }
 
-  // Define the monthMap inside the route
+   
   const monthMap = {
     'Jan': '01',
     'Feb': '02',
@@ -256,7 +252,7 @@ app.get("/combined-data", async (req, res) => {
   }
 
   try {
-    // Fetch statistics data
+     
     const statisticsPromise = db.get(
       `
       SELECT 
@@ -269,7 +265,7 @@ app.get("/combined-data", async (req, res) => {
       [monthNumber]
     );
 
-    // Fetch bar chart data
+     
     const barChartPromise = db.get(
       `
       SELECT 
@@ -289,7 +285,7 @@ app.get("/combined-data", async (req, res) => {
       [monthNumber]
     );
 
-    // Fetch pie chart data
+     
     const pieChartPromise = db.all(
       `
       SELECT category, COUNT(*) AS itemCount
@@ -300,22 +296,19 @@ app.get("/combined-data", async (req, res) => {
       [monthNumber]
     );
 
-    // Wait for all promises to resolve
-    const [statistics, barChartData, pieChartData] = await Promise.all([
+     const [statistics, barChartData, pieChartData] = await Promise.all([
       statisticsPromise,
       barChartPromise,
       pieChartPromise,
     ]);
 
-    // Combine the responses into one object
-    const combinedData = {
+     const combinedData = {
       statistics,
       barChartData,
       pieChartData,
     };
 
-    // Send the combined response
-    res.json(combinedData);
+     res.json(combinedData);
   } catch (err) {
     console.error("Error fetching combined data:", err.message);
     res.status(500).json({ error: err.message });

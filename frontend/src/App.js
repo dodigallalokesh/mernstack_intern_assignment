@@ -11,11 +11,11 @@ class App extends Component {
     super(props);
     this.state = {
       searchTerm: '',
-      month: 'Mar', // Default to March
+      month: 'Mar', 
     };
   }
 
-  // Month map to convert month names to numbers
+   
   monthMap = {
     Jan: '01',
     Feb: '02',
@@ -31,12 +31,12 @@ class App extends Component {
     Dec: '12',
   };
 
-  // Handle search input change
+   
   handleSearchChange = (e) => {
     this.setState({ searchTerm: e.target.value });
   };
 
-  // Handle month dropdown change
+   
   handleMonthChange = (e) => {
     this.setState({ month: e.target.value });
   };
@@ -46,7 +46,7 @@ class App extends Component {
 
     return (
       <div className="container">
-        {/* Search and Month Dropdown */}
+         
         <div className="search-container">
           <div className="search-bar">
              
@@ -69,7 +69,7 @@ class App extends Component {
           </div>
         </div>
 
-        {/* Components */}
+         
         <TransactionDashboard searchTerm={searchTerm} />
         <StatisticsBox month={month}/>
         <BarChart month={month} />

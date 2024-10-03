@@ -13,7 +13,7 @@ class BarChart extends Component {
     };
   }
 
-  // Fetch data when the component mounts or updates based on the month prop
+   
   fetchData = async (month) => {
     try {
       const response = await fetch(`http://localhost:3005/bar-chart-data?month=${month}`);
@@ -46,13 +46,13 @@ class BarChart extends Component {
   };
 
   componentDidMount() {
-    this.fetchData(this.props.month); // Fetch data based on the initial month prop
+    this.fetchData(this.props.month);  
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.month !== this.props.month) {
-      this.setState({ loading: true }); // Reset loading state
-      this.fetchData(this.props.month); // Fetch data when the month prop changes
+      this.setState({ loading: true });  
+      this.fetchData(this.props.month);  
     }
   }
 
