@@ -1,0 +1,79 @@
+.transaction-dashboard {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-icon {
+    margin-right: 8px;
+  }
+  
+  .month-dropdown select {
+    padding: 5px;
+  }
+  
+  .transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .transactions-table table {
+    width: 100%;
+  }
+  
+  .transactions-table th, .transactions-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .row-even {
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .row-odd {
+    background-color: #e9f7f6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .transactions-table th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: left;
+  }
+  
+  .pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .pagination-controls button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .pagination-controls button:disabled {
+    background-color: #ccc;
+  }
+  
+  .pagination-controls span {
+    padding: 10px;
+    font-weight: bold;
+  }
+  
